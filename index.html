@@ -27,6 +27,12 @@ nav a:hover,nav a.on{border-color:var(--gold)}
 .btn.ghost{background:transparent;color:#fff;border-color:#fff}
 .btn.ghost:hover{background:#fff;color:var(--navy)}
 .dark{background:var(--navy);color:#fff}
+.logo{display:flex;align-items:center;gap:10px}
+.logo img{height:38px;width:auto;display:block}
+.vid-wrap{position:relative;overflow:hidden}
+.vid-wrap video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+.vid-wrap:before{content:"";position:absolute;inset:0;background:rgba(11,27,58,.65);z-index:1}
+.vid-wrap .wrap{position:relative;z-index:2}
 section{padding:72px 0}
 .hero{padding:96px 0 84px}
 .hero p{max-width:640px;margin:22px 0 32px;font-size:1.15rem;color:#C9D2E4}
@@ -69,7 +75,7 @@ footer small{display:block;margin-top:34px;border-top:1px solid #2A3D66;padding-
 </head>
 <body>
 <header><div class="wrap">
-<a class="logo" href="#home">GALAXY <span>PRIME</span> GROUP</a>
+<a class="logo" href="#home"><img src="logo.jpg" alt="Galaxy Prime Group"><span style="font:700 1.4rem 'Barlow Condensed',sans-serif">GALAXY <span style="color:var(--gold)">PRIME</span> GROUP</span></a>
 <nav id="nav">
 <a href="#home" data-p="home">Home</a><a href="#services" data-p="services">Services</a><a href="#about" data-p="about">About</a><a href="#contact" data-p="contact">Contact</a>
 <a class="btn" href="#contact">Get a Free Quote</a>
@@ -100,7 +106,7 @@ const card=k=>`<a class="card" href="#${k}"><h3>${B[k].n}</h3><p>${B[k].d}</p><e
 const cta=`<div class="cta"><div class="wrap"><h2>Ready to grow your business?</h2><a class="btn" href="#contact">Talk to Our Team</a></div></div>`;
 const P={
 home:()=>`
-<div class="dark hero"><div class="wrap"><div class="hello">Welcome to Galaxy Prime Group</div>
+<div class="dark hero vid-wrap"><video id="heroVid" autoplay muted playsinline><source src="hero-video.mp4" type="video/mp4"></video><div class="wrap"><div class="hello">Welcome to Galaxy Prime Group</div>
 <h1>Your back office.<br>Built for builders.</h1>
 <p>A group of specialist brands for contractors: estimating, bid sourcing, admin support, web, social and SEO, delivered by our own team.</p>
 <div class="row"><a class="btn" href="#contact">Get a Free Quote</a><a class="btn ghost" href="#services">See Our Services</a></div></div></div>
@@ -154,6 +160,7 @@ location.href="mailto:YOUR-EMAIL@YOURDOMAIN.COM?subject="+encodeURIComponent("We
 document.getElementById("fbrands").innerHTML=["estimating",...others].map(k=>`<a href="#${k}">${B[k].n}</a>`).join("");
 document.getElementById("yr").textContent=new Date().getFullYear();
 addEventListener("hashchange",go);go();
+  setTimeout(()=>{const v=document.getElementById('heroVid');if(v)v.pause();},5000);
 </script>
 </body>
 </html>
