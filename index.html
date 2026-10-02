@@ -28,7 +28,13 @@ nav a:hover,nav a.on{border-color:var(--gold)}
 .dd-panel{display:none;position:absolute;top:100%;left:0;background:#fff;border:1px solid var(--line);box-shadow:0 10px 30px rgba(11,27,58,.18);min-width:220px;padding:8px;margin-top:10px;z-index:20}
 .dd-panel.open{display:block}
 .dd-panel a{display:block;color:var(--ink);padding:10px 12px;border:none;font-weight:500}
-.dd-panel a:hover{background:var(--bg);color:var(--navy)}
+.icn{width:44px;height:44px;flex:none}
+.core{border-top-width:6px;position:relative;padding-top:30px}
+.core .tag{position:absolute;top:-1px;left:-1px;background:var(--navy);color:var(--gold);font:700 .72rem 'Barlow Condensed',sans-serif;letter-spacing:.08em;padding:5px 12px}
+.cards.split{grid-template-columns:repeat(2,1fr)}
+.sechead{display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:46px}
+.sechead h3{font-size:1.2rem;color:var(--mute);text-transform:uppercase;letter-spacing:.08em;font-family:Inter,sans-serif;font-weight:600}
+@media(max-width:700px){.cards.split{grid-template-columns:1fr}}
 .dark{background:var(--navy);color:#fff}
 section{padding:72px 0}
 .hero{padding:96px 0 84px;position:relative;overflow:hidden}
@@ -113,8 +119,18 @@ social:{n:"Galaxy Social",headline:"Turn Finished Jobs Into Your Next Client.",t
 marketing:{n:"Galaxy Marketing",headline:"Be the First Name They Find — and Remember.",t:"From showing up in local searches to staying in front of past clients, we handle the marketing that keeps leads coming in — so you don't have to chase work.",o:["Local SEO — show up when someone searches \"[your trade] near me\"","Google Business Profile setup and optimization","Google and Facebook Ads — targeted campaigns that bring in real leads","Email marketing — stay in front of past clients so you're the first call next time"],w:"Most clients search online before they ever pick up the phone — and most contractors lose repeat business simply because they go quiet after a job ends. Galaxy Marketing keeps you visible to new clients and connected to old ones."}
 };
 const others=["bid","va","web","social","marketing"];
+const core=["estimating","bid"];
+const secondary=others.filter(k=>k!=="bid");
+const ICONS={
+estimating:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="2.5" width="16" height="19" rx="1.5"/><line x1="8" y1="6.5" x2="16" y2="6.5"/><line x1="7.5" y1="10.5" x2="7.5" y2="10.51"/><line x1="12" y1="10.5" x2="12" y2="10.51"/><line x1="16.5" y1="10.5" x2="16.5" y2="10.51"/><line x1="7.5" y1="14.5" x2="7.5" y2="14.51"/><line x1="12" y1="14.5" x2="12" y2="14.51"/><line x1="16.5" y1="14.5" x2="16.5" y2="14.51"/><line x1="7.5" y1="18.5" x2="7.5" y2="18.51"/><line x1="12" y1="18.5" x2="12" y2="18.51"/></svg>',
+bid:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="11" cy="11" r="7"/><circle cx="11" cy="11" r="3"/><line x1="16.2" y1="16.2" x2="21" y2="21"/></svg>',
+va:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 13a8 8 0 0 1 16 0"/><rect x="2.5" y="13" width="4" height="6" rx="1.5"/><rect x="17.5" y="13" width="4" height="6" rx="1.5"/><path d="M19.5 19v1a3 3 0 0 1-3 3h-3"/></svg>',
+web:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2.5" y="4" width="19" height="14" rx="1.5"/><line x1="2.5" y1="8" x2="21.5" y2="8"/><line x1="5.5" y1="6" x2="5.5" y2="6.01"/><line x1="8" y1="6" x2="8" y2="6.01"/></svg>',
+social:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2.5" y="6" width="19" height="13" rx="2"/><circle cx="12" cy="12.5" r="3.6"/><line x1="16.8" y1="9.2" x2="16.8" y2="9.21"/></svg>',
+marketing:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 10v4h4l5 4V6L7 10H3z"/><path d="M16 9a4 4 0 0 1 0 6"/><path d="M19 6.5a8 8 0 0 1 0 11"/></svg>'
+};
 const TRADES=["Concrete","Painting","Drywall","Sitework","Electrical","Plumbing","HVAC","Roofing","Flooring","Masonry","Steel"];
-const card=k=>`<a class="card" href="#${k}"><h3>${B[k].n}</h3><p>${B[k].d||B[k].t}</p><em>Learn more</em></a>`;
+const card=(k,big)=>`<a class="card${big?' core':''}" href="#${k}">${big?'<span class="tag">Core Service</span>':''}<div class="icn" style="color:var(--gold)">${ICONS[k]}</div><h3>${B[k].n}</h3><p>${B[k].d||B[k].t}</p><em>Learn more</em></a>`;
 const cta=`<div class="cta"><div class="wrap"><h2>Ready to grow your business?</h2><a class="btn" href="#contact">Talk to Our Team</a></div></div>`;
 const trust=`<section class="alt"><div class="wrap"><h2>How we work</h2><p class="lead">Clear terms, no surprises.</p>
 <div class="trust">
@@ -135,14 +151,19 @@ home:()=>`
 <p>Our flagship brand. Accurate, reliable construction cost estimating for residential, commercial and industrial projects, including shop fitouts, and trades from concrete and painting to drywall and sitework.</p>
 <div class="row"><a class="btn" href="#estimating">See More About Galaxy Estimating</a><a class="btn ghost" href="#contact">Request an Estimate</a></div></div>
 <div class="stats"><div class="stat"><b>4500+</b><span>Projects completed</span></div><div class="stat"><b>10+</b><span>Years of experience</span></div><div class="stat"><b>25+</b><span>Estimating experts</span></div></div></div></div>
-<section><div class="wrap"><h2>Built specifically for contractors</h2><p class="lead">Every service under Galaxy Prime Group is its own specialist team, so you get real expertise in each area.</p>
-<div class="cards">${others.map(card).join("")}</div></div></section>
+<section><div class="wrap"><h2>Built specifically for contractors</h2><p class="lead">We work almost exclusively with contractors and trades businesses — every service here is shaped around how you bid, win and run work.</p>
+<div class="cards split">${core.map(k=>card(k,true)).join("")}</div>
+<div class="sechead"><h3>Additional support for your business</h3></div>
+<div class="cards">${secondary.map(k=>card(k)).join("")}</div></div></section>
 <section class="alt"><div class="wrap two"><div><h2>Why contractors choose us</h2><p class="lead">One group, one point of contact, and a team for every job.</p></div>
 <ul class="list"><li>A dedicated in-house team behind every service</li><li>Built around how contractors bid and win work</li><li>Clear scope and fast turnaround</li><li>Working with clients across the USA, Canada and UK</li></ul></div></section>
 ${cta}`,
 services:()=>`<section><div class="wrap"><h1 style="font-size:clamp(2.2rem,5vw,3.6rem)">Everything your business needs, under one group</h1>
-<p class="lead">Six specialist brands. Use one, or bring us in across the whole business.</p>
-<div class="cards">${["estimating",...others].map(card).join("")}</div></div></section>${cta}`,
+<p class="lead">Built almost entirely around contractors. Two core services get you more work — four more keep the rest of your business running.</p>
+<div class="sechead" style="margin-top:0"><h3>Core services</h3></div>
+<div class="cards split">${core.map(k=>card(k,true)).join("")}</div>
+<div class="sechead"><h3>Additional services</h3></div>
+<div class="cards">${secondary.map(k=>card(k)).join("")}</div></div></section>${cta}`,
 estimating:()=>`
 <div class="dark hero" style="padding:72px 0"><div class="wrap"><div class="hello">Galaxy Prime Group presents</div><h1>Galaxy Estimating</h1><p>Accurate and reliable construction estimating services you can trust, for residential, commercial and industrial projects.</p><div class="row"><a class="btn" href="#contact">Request an Estimate</a></div></div></div>
 <section><div class="wrap"><div class="cards" style="margin-top:0">
