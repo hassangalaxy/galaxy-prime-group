@@ -31,7 +31,8 @@ nav a{text-decoration:none;font-weight:500;padding:4px 0;border-bottom:2px solid
 nav a:hover,nav a.on{border-color:var(--gold)}
 .dd{position:relative}
 .dd-panel{display:none;position:absolute;top:100%;left:0;background:#fff;border:1px solid var(--line);box-shadow:0 10px 30px rgba(11,27,58,.18);min-width:220px;padding:8px;margin-top:10px;z-index:20}
-.dd-panel.open{display:block}
+.dd:hover .dd-panel,.dd-panel.open{display:block}
+.dd-panel:before{content:"";position:absolute;left:0;right:0;top:-10px;height:10px}
 .dd-panel a{display:block;color:var(--ink);padding:10px 12px;border:none;font-weight:500}
 .icn{width:44px;height:44px;flex:none}
 .core{border-top-width:6px;position:relative;padding-top:30px}
