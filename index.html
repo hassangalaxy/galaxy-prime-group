@@ -148,7 +148,7 @@ const trust=`<section class="alt"><div class="wrap"><h2>How we work</h2><p class
 const legalPage=(title,body)=>`<section><div class="wrap legalbody"><h1 style="font-size:clamp(2rem,4vw,3rem)">${title}</h1><p class="lead">Last updated: January 2026</p>${body}</div></section>`;
 const P={
 home:()=>`
-<div class="dark hero"><video id="heroVid" autoplay muted playsinline><source src="hero-video.mp4" type="video/mp4"></video><div class="wrap"><div class="hello">Welcome to Galaxy Prime Group</div>
+<div class="dark hero"><video id="heroVid" autoplay muted loop playsinline><source src="hero-video.mp4" type="video/mp4"></video><div class="wrap"><div class="hello">Welcome to Galaxy Prime Group</div>
 <h1>Your back office.<br>Built for builders.</h1>
 <p>A group of specialist brands for contractors: estimating, bid sourcing, admin support, web, social and marketing, delivered by our own team.</p>
 <div class="row"><a class="btn" href="#contact">Get a Free Quote</a><a class="btn ghost" href="#services">See Our Services</a></div></div></div>
@@ -222,7 +222,7 @@ function go(){const h=(location.hash||"#home").slice(1);const k=P[h]?h:"home";
 document.getElementById("app").innerHTML=P[k]();
 document.querySelectorAll("#nav a[data-p]").forEach(a=>a.classList.toggle("on",a.dataset.p===k));
 document.title=(k==="home"?"":(B[k]?B[k].n:k[0].toUpperCase()+k.slice(1))+" | ")+"Galaxy Prime Group";window.scrollTo(0,0);
-const v=document.getElementById('heroVid');if(v){v.currentTime=0;v.play().catch(()=>{});setTimeout(()=>{if(v)v.pause();},5000);}
+const v=document.getElementById('heroVid');if(v){v.play().catch(()=>{});}
 const f=document.getElementById("f");if(f)f.onsubmit=e=>{e.preventDefault();const d=new FormData(f);
 const body=`Name: ${d.get("n")}%0AEmail: ${d.get("e")}%0APhone: ${d.get("p")}%0ATrade: ${d.get("t")}%0AService: ${d.get("s")}%0A%0A${encodeURIComponent(d.get("m"))}`;
 location.href="mailto:info@galaxyprimegroup.com?subject="+encodeURIComponent("Website enquiry: "+d.get("s"))+"&body="+body;};}
