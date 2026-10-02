@@ -93,6 +93,14 @@ footer small{display:block;margin-top:34px;border-top:1px solid #2A3D66;padding-
 :focus-visible{outline:3px solid var(--gold);outline-offset:2px}
 @media(max-width:800px){.spot .grid,.two{grid-template-columns:1fr}section{padding:54px 0}.spot{padding:64px 0}}
   #svcLink:after{content:"";display:inline-block;width:6px;height:6px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg);margin-left:8px;position:relative;top:-3px}
+.orbit{position:relative;height:520px;margin-top:30px}
+.orbit:before{content:"";position:absolute;left:12%;right:12%;top:20%;bottom:20%;border:2px dashed var(--line);border-radius:50%}
+.orb-lines{position:absolute;inset:0;width:100%;height:100%;stroke:var(--gold);stroke-width:1.5;opacity:.5}
+.orb-hub{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:130px;height:130px;border-radius:50%;background:var(--navy);color:#fff;display:grid;place-items:center;text-align:center;font:700 1.25rem/1.1 'Barlow Condensed',sans-serif;border:3px solid var(--gold);z-index:5}
+.orb-node{position:absolute;left:0;top:0;width:150px;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;text-decoration:none;background:#fff;border:1px solid var(--line);border-top:4px solid var(--gold);padding:14px 10px;box-shadow:0 6px 18px rgba(11,27,58,.12);will-change:transform}
+.orb-node i{width:40px;height:40px;color:var(--gold);display:block}
+.orb-node span{font-weight:600;color:var(--navy);line-height:1.25}
+@media(max-width:800px){.orbit{height:auto;display:grid;grid-template-columns:1fr 1fr;gap:12px}.orbit:before,.orb-hub,.orb-lines{display:none}.orb-node{position:static!important;transform:none!important;opacity:1!important;width:auto}}
 </style>
 </head>
 <body>
@@ -158,7 +166,9 @@ home:()=>`
 <p>Our flagship brand. Accurate, reliable construction cost estimating for residential, commercial and industrial projects, including shop fitouts, and trades from concrete and painting to drywall and sitework.</p>
 <div class="row"><a class="btn" href="#estimating">See More About Galaxy Estimating</a><a class="btn ghost" href="#contact">Request an Estimate</a></div></div>
 <div class="stats"><div class="stat"><b>4500+</b><span>Projects completed</span></div><div class="stat"><b>10+</b><span>Years of experience</span></div><div class="stat"><b>25+</b><span>Estimating experts</span></div></div></div></div>
-<section><div class="wrap"><h2>Built specifically for contractors</h2><p class="lead">We work almost exclusively with contractors and trades businesses — every service here is shaped around how you bid, win and run work.</p>
+<section><div class="wrap"><h2>Built specifically for contractors
+<div class="orbit" id="orbit"></div></div></section>
+</h2><p class="lead">We work almost exclusively with contractors and trades businesses — every service here is shaped around how you bid, win and run work.</p>
 <div class="cards split">${core.map(k=>card(k,true)).join("")}</div>
 <div class="sechead"><h3>Additional support for your business</h3></div>
 <div class="cards">${secondary.map(k=>card(k)).join("")}</div></div></section>
@@ -219,8 +229,9 @@ cookies:()=>legalPage("Cookie Policy",`<div><p>This site uses cookies for basic 
 others.forEach(k=>P[k]=()=>`<div class="dark hero" style="padding:72px 0"><div class="wrap"><div class="hello">Galaxy Prime Group presents</div><h1>${B[k].headline||B[k].n}</h1><p>${B[k].t}</p><div class="row"><a class="btn" href="#contact">Get Started</a></div></div></div>
 <section><div class="wrap two"><div><h2>What we offer</h2><p class="lead">${B[k].t}</p></div><ul class="list">${B[k].o.map(x=>`<li>${x}</li>`).join("")}</ul></div></section>
 <section class="alt"><div class="wrap two"><div><h2>Why it matters for contractors</h2></div><p class="lead" style="margin:0">${B[k].w}</p></div></section>${cta}`);
-function go(){const h=(location.hash||"#home").slice(1);const k=P[h]?h:"home";
+  function go(){const h=(location.hash||"#home").slice(1);const k=P[h]?h:"home";
 document.getElementById("app").innerHTML=P[k]();
+initOrbit();
 document.querySelectorAll("#nav a[data-p]").forEach(a=>a.classList.toggle("on",a.dataset.p===k));
 document.title=(k==="home"?"":(B[k]?B[k].n:k[0].toUpperCase()+k.slice(1))+" | ")+"Galaxy Prime Group";window.scrollTo(0,0);
 const v=document.getElementById('heroVid');if(v){v.play().catch(()=>{});}
