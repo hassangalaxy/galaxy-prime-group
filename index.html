@@ -102,6 +102,8 @@ footer small{display:block;margin-top:34px;border-top:1px solid #2A3D66;padding-
 .orb-node i{width:40px;height:40px;color:var(--gold);display:block}
 .orb-node span{font-weight:600;color:var(--navy);line-height:1.25}
 @media(max-width:800px){.orbit{height:auto;display:grid;grid-template-columns:1fr 1fr;gap:12px}.orbit:before,.orb-hub,.orb-lines{display:none}.orb-node{position:static!important;transform:none!important;opacity:1!important;width:auto}}
+#topbar{position:fixed;top:0;left:0;height:3px;width:0;background:var(--gold);z-index:99999;opacity:0;transition:opacity .3s}
+#app{transition:opacity .25s ease}
 </style>
 </head>
 <body>
@@ -261,6 +263,22 @@ document.getElementById("svcLink").addEventListener("click",e=>{e.preventDefault
 document.addEventListener("click",e=>{if(!e.target.closest(".dd"))document.getElementById("ddpanel").classList.remove("open");});
 document.getElementById("yr").textContent=new Date().getFullYear();
 addEventListener("hashchange",go);go();
+</script>
+<script>
+(function(){
+var bar=document.createElement('div');bar.id='topbar';document.body.appendChild(bar);
+document.addEventListener('click',function(e){
+var a=e.target.closest('a,.btn');if(!a)return;
+var h=a.getAttribute('href')||'';
+if(h.charAt(0)!=='#'&&!a.dataset.p)return;
+var app=document.getElementById('app');
+bar.style.transition='none';bar.style.width='0';bar.style.opacity='1';
+if(app)app.style.opacity='.35';
+requestAnimationFrame(function(){requestAnimationFrame(function(){
+bar.style.transition='width .5s ease';bar.style.width='100%';});});
+setTimeout(function(){bar.style.opacity='0';if(app)app.style.opacity='1';},550);
+});
+})();
 </script>
 </body>
 </html>
