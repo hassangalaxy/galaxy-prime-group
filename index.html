@@ -16,8 +16,16 @@ body{font:16px/1.6 Inter,system-ui,sans-serif;color:var(--ink);background:#fff}
 h1,h2,h3{font-family:'Barlow Condensed','Arial Narrow',sans-serif;line-height:1.05;letter-spacing:.01em}
 h1{font-size:clamp(2.6rem,6vw,4.6rem)}h2{font-size:clamp(1.9rem,4vw,2.8rem)}h3{font-size:1.5rem}
 a{color:inherit}
-.btn{display:inline-block;background:var(--gold);color:var(--navy);font:600 1rem Inter,sans-serif;padding:12px 22px;border:2px solid var(--gold);text-decoration:none;cursor:pointer}
-.btn:hover{filter:brightness(1.08)}
+html{scroll-behavior:smooth}
+.btn{display:inline-block;background:var(--gold);color:var(--navy);font:600 1rem Inter,sans-serif;padding:12px 22px;border:2px solid var(--gold);text-decoration:none;cursor:pointer;transition:transform .2s ease,filter .2s ease,box-shadow .2s ease}
+.btn:hover{filter:brightness(1.08);transform:translateY(-3px);box-shadow:0 10px 20px rgba(0,0,0,.18)}
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+.hero .hello{animation:fadeUp .7s ease both}
+.hero h1{animation:fadeUp .7s ease .12s both}
+.hero p{animation:fadeUp .7s ease .24s both}
+.hero .row{animation:fadeUp .7s ease .36s both}
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease}
+.reveal.show{opacity:1;transform:translateY(0)}
 .btn.ghost{background:transparent;color:#fff;border-color:#fff}
   .wrap{max-width:1120px;margin:0 auto;padding:0 22px}
 header{background:var(--navy);color:#fff;position:sticky;top:0;z-index:9}
@@ -59,8 +67,10 @@ section{padding:72px 0}
 .stat b{display:block;font:700 3rem/1 'Barlow Condensed',sans-serif;color:var(--gold)}
 .stat span{color:#C9D2E4}
 .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;margin-top:34px}
-.card{background:#fff;border:1px solid var(--line);border-top:4px solid var(--navy);padding:26px;display:flex;flex-direction:column;gap:10px;text-decoration:none}
-.card:hover{border-top-color:var(--gold);box-shadow:0 6px 22px rgba(11,27,58,.1)}
+.card{background:#fff;border:1px solid var(--line);border-top:4px solid var(--navy);padding:26px;display:flex;flex-direction:column;gap:10px;text-decoration:none;transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease}
+.card:hover{border-top-color:var(--gold);box-shadow:0 14px 30px rgba(11,27,58,.14);transform:translateY(-6px)}
+.icn{transition:transform .25s ease}
+.card:hover .icn{transform:scale(1.12) rotate(-4deg)}
 .card p{color:var(--mute);flex:1}
 .card em{font-style:normal;font-weight:600;color:var(--navy)}
 .alt{background:var(--bg)}
@@ -166,7 +176,7 @@ home:()=>`
 <h2>Galaxy Estimating</h2>
 <p>Our flagship brand. Accurate, reliable construction cost estimating for residential, commercial and industrial projects, including shop fitouts, and trades from concrete and painting to drywall and sitework.</p>
 <div class="row"><a class="btn" href="#estimating">See More About Galaxy Estimating</a><a class="btn ghost" href="#contact">Request an Estimate</a></div></div>
-<div class="stats"><div class="stat"><b>4500+</b><span>Projects completed</span></div><div class="stat"><b>10+</b><span>Years of experience</span></div><div class="stat"><b>25+</b><span>Estimating experts</span></div></div></div></div>
+<div class="stats"><div class="stat"><b class="cnt" data-val="4500" data-suf="+">0</b><span>Projects completed</span></div><div class="stat"><b class="cnt" data-val="10" data-suf="+">0</b><span>Years of experience</span></div><div class="stat"><b class="cnt" data-val="25" data-suf="+">0</b><span>Estimating experts</span></div></div></div></div>
 <section><div class="wrap"><h2>Built specifically for contractors</h2><p class="lead">We work almost exclusively with contractors and trades businesses — every service here is shaped around how you bid, win and run work.</p>
 <div class="orbit" id="orbit"></div></div></section>
 <section class="alt"><div class="wrap two"><div><h2>Why contractors choose us</h2><p class="lead">One group, one point of contact, and a team for every job.</p></div>
@@ -248,6 +258,12 @@ requestAnimationFrame(frame);}
 frame();}
 function go(){const h=(location.hash||"#home").slice(1);const k=P[h]?h:"home";
 document.getElementById("app").innerHTML=P[k]();
+initOrbit();
+document.querySelectorAll("#app .card, #app .trust>div, #app .chips, #app section.alt, #app .legalbody").forEach(el=>el.classList.add("reveal"));
+const io=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){en.target.classList.add("show");io.unobserve(en.target);}}),{threshold:.15});
+document.querySelectorAll("#app .reveal").forEach(el=>io.observe(el));
+document.querySelectorAll("#app .cnt").forEach(el=>{const to=+el.dataset.val,suf=el.dataset.suf||"";let n=0;const step=Math.max(1,Math.ceil(to/40));
+const t=setInterval(()=>{n+=step;if(n>=to){n=to;clearInterval(t);}el.textContent=n+suf;},30);});
 initOrbit();
 document.querySelectorAll("#nav a[data-p]").forEach(a=>a.classList.toggle("on",a.dataset.p===k));
 document.title=(k==="home"?"":(B[k]?B[k].n:k[0].toUpperCase()+k.slice(1))+" | ")+"Galaxy Prime Group";window.scrollTo(0,0);
