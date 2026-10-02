@@ -26,13 +26,9 @@ nav a{text-decoration:none;font-weight:500;padding:4px 0;border-bottom:2px solid
 nav a:hover,nav a.on{border-color:var(--gold)}
 .dd{position:relative}
 .dd-panel{display:none;position:absolute;top:100%;left:0;background:#fff;border:1px solid var(--line);box-shadow:0 10px 30px rgba(11,27,58,.18);min-width:220px;padding:8px;margin-top:10px;z-index:20}
-.dd:hover .dd-panel,.dd-panel:hover{display:block}
+.dd-panel.open{display:block}
 .dd-panel a{display:block;color:var(--ink);padding:10px 12px;border:none;font-weight:500}
 .dd-panel a:hover{background:var(--bg);color:var(--navy)}
-.btn{display:inline-block;background:var(--gold);color:var(--navy);font-weight:600;padding:13px 26px;text-decoration:none;border:2px solid var(--gold);cursor:pointer;font-size:1rem}
-.btn:hover{background:#DDB73A}
-.btn.ghost{background:transparent;color:#fff;border-color:#fff}
-.btn.ghost:hover{background:#fff;color:var(--navy)}
 .dark{background:var(--navy);color:#fff}
 section{padding:72px 0}
 .hero{padding:96px 0 84px;position:relative;overflow:hidden}
@@ -91,7 +87,7 @@ footer small{display:block;margin-top:34px;border-top:1px solid #2A3D66;padding-
 <a class="logo" href="#home"><img src="logo.jpeg" alt="Galaxy Prime Group"><b>GALAXY <span>PRIME</span> GROUP</b></a>
 <nav id="nav">
 <a href="#home" data-p="home">Home</a>
-<div class="dd"><a href="#services" data-p="services">Services</a><div class="dd-panel" id="ddpanel"></div></div>
+<div class="dd"><a href="#services" data-p="services" id="svcLink">Services</a><div class="dd-panel" id="ddpanel"></div></div>
 <a href="#about" data-p="about">About</a><a href="#contact" data-p="contact">Contact</a>
 <a class="btn" href="#contact">Get a Free Quote</a>
 </nav></div></header>
@@ -205,6 +201,8 @@ const body=`Name: ${d.get("n")}%0AEmail: ${d.get("e")}%0APhone: ${d.get("p")}%0A
 location.href="mailto:info@galaxyprimegroup.com?subject="+encodeURIComponent("Website enquiry: "+d.get("s"))+"&body="+body;};}
 document.getElementById("fbrands").innerHTML=["estimating",...others].map(k=>`<a href="#${k}">${B[k].n}</a>`).join("");
 document.getElementById("ddpanel").innerHTML=["estimating",...others].map(k=>`<a href="#${k}">${B[k].n}</a>`).join("");
+document.getElementById("svcLink").addEventListener("click",e=>{e.preventDefault();document.getElementById("ddpanel").classList.toggle("open");location.hash="services";});
+document.addEventListener("click",e=>{if(!e.target.closest(".dd"))document.getElementById("ddpanel").classList.remove("open");});
 document.getElementById("yr").textContent=new Date().getFullYear();
 addEventListener("hashchange",go);go();
 </script>
