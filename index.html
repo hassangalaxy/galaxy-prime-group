@@ -256,7 +256,7 @@ about:()=>`<section><div class="wrap two"><div><h1 style="font-size:clamp(2.2rem
 ${trust}${cta}`,
 contact:()=>`<section><div class="wrap two"><div><h1 style="font-size:clamp(2.2rem,5vw,3.6rem)">Tell us about your project</h1><p class="lead">Our team will get back to you within 24 hours.</p>
 <p class="lead"><a href="mailto:info@galaxyprimegroup.com">info@galaxyprimegroup.com</a><br><a href="mailto:hassan.galaxyprimegroup@gmail.com">hassan.galaxyprimegroup@gmail.com</a><br><a href="tel:+19704581912">+1 (970) 458-1912</a><br>Galaxy Prime Group LLC<br>1500 N Grant St Ste R, Denver, CO 80203, US</p></div>
-<form id="f"><label>Name<input name="n" required></label><label>Email<input name="e" type="email" required></label><label>Phone<input name="p"></label><label>Trade<input name="t" placeholder="e.g. concrete, painting"></label>
+<form id="f"><label>Name<input name="n" required></label><label>Email<input name="e" type="email" required></label><label>Phone<input name="p"></label><label>Work due date<input name="t" type="date"></label>
 <label>Service interested in<select name="s">${["estimating",...others].map(k=>`<option>${B[k].n}</option>`).join("")}</select></label>
 <label>Project details<textarea name="m" rows="4"></textarea></label><button class="btn" type="submit">Send Message</button></form></div></section>`,
 privacy:()=>legalPage("Privacy Policy",`<div><p>Galaxy Prime Group LLC ("we", "us") collects the information you submit through our contact form — name, email, phone, trade, service interest and project details — to respond to your enquiry.</p>
@@ -309,7 +309,7 @@ document.querySelectorAll("#nav a[data-p]").forEach(a=>a.classList.toggle("on",a
 document.title=(k==="home"?"":(B[k]?B[k].n:k[0].toUpperCase()+k.slice(1))+" | ")+"Galaxy Prime Group";window.scrollTo(0,0);
 const v=document.getElementById('heroVid');if(v){v.play().catch(()=>{});}
 const f=document.getElementById("f");if(f)f.onsubmit=e=>{e.preventDefault();const d=new FormData(f);
-const body=`Name: ${d.get("n")}%0AEmail: ${d.get("e")}%0APhone: ${d.get("p")}%0ATrade: ${d.get("t")}%0AService: ${d.get("s")}%0A%0A${encodeURIComponent(d.get("m"))}`;
+const body=`Name: ${d.get("n")}%0AEmail: ${d.get("e")}%0APhone: ${d.get("p")}%0AWork due date: ${d.get("t")}%0AService: ${d.get("s")}%0A%0A${encodeURIComponent(d.get("m"))}`;
 location.href="mailto:info@galaxyprimegroup.com?subject="+encodeURIComponent("Website enquiry: "+d.get("s"))+"&body="+body;};}
 document.getElementById("fbrands").innerHTML=["estimating",...others].map(k=>`<a href="#${k}">${B[k].n}</a>`).join("");
 document.getElementById("ddpanel").innerHTML=["estimating",...others].map(k=>`<a href="#${k}">${B[k].n}</a>`).join("");
