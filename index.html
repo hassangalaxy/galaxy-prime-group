@@ -356,5 +356,39 @@ document.getElementById('sbChat').addEventListener('click',function(){
 });
 })();
 </script>
+<script>
+(function(){
+var FORM_URL="https://formspree.io/f/mdeajydq";
+document.addEventListener("submit",function(e){
+  var f=e.target;
+  if(!f||f.id!=="f")return;
+  e.preventDefault();
+  e.stopImmediatePropagation();
+  var btn=f.querySelector("button[type=submit]");
+  var old=btn?btn.textContent:"";
+  if(btn){btn.disabled=true;btn.textContent="Sending...";}
+  var d=new FormData(f);
+  var payload={
+    name:d.get("n"),
+    email:d.get("e"),
+    phone:d.get("p"),
+    work_due_date:d.get("t"),
+    service:d.get("s"),
+    message:d.get("m"),
+    _subject:"Website enquiry: "+d.get("s")
+  };
+  fetch(FORM_URL,{method:"POST",headers:{"Accept":"application/json","Content-Type":"application/json"},body:JSON.stringify(payload)})
+  .then(function(r){
+    if(r.ok){
+      f.innerHTML='<h3>Thank you!</h3><p class="lead">We received your message and will get back to you within 24 hours.</p>';
+    }else{throw new Error("fail");}
+  })
+  .catch(function(){
+    if(btn){btn.disabled=false;btn.textContent=old;}
+    alert("Sorry, something went wrong. Please email us at info@galaxyprimegroup.com");
+  });
+},true);
+})();
+</script>
 </body>
 </html>
