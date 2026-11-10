@@ -140,6 +140,9 @@ footer small{display:block;margin-top:34px;border-top:1px solid #2A3D66;padding-
 .sb-chat{background:var(--navy);border:2px solid var(--gold)!important}
 .sb-mail{background:var(--gold);color:var(--navy)!important}
 .sidebtns svg{width:26px;height:26px}
+@keyframes slideFromLeft{from{opacity:0;transform:translateX(-90px)}to{opacity:1;transform:translateX(0)}}
+.hero:not([style]) .hello{font-size:clamp(1.7rem,4vw,2.6rem);margin-bottom:16px;animation:slideFromLeft .9s ease-out 1s both}
+@media(prefers-reduced-motion:reduce){.hero:not([style]) .hello{animation:none}}
 </style>
 </head>
 <script>
