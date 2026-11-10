@@ -143,6 +143,13 @@ footer small{display:block;margin-top:34px;border-top:1px solid #2A3D66;padding-
 @keyframes slideFromLeft{from{opacity:0;transform:translateX(-90px)}to{opacity:1;transform:translateX(0)}}
 .hero:not([style]) .hello{font-size:clamp(1.7rem,4vw,2.6rem);margin-bottom:16px;animation:slideFromLeft .9s ease-out 1s both}
 @media(prefers-reduced-motion:reduce){.hero:not([style]) .hello{animation:none}}
+body.rise #app>*{animation:fadeUp .6s ease-out backwards}
+body.rise #app>*:nth-child(2){animation-delay:.1s}
+body.rise #app>*:nth-child(3){animation-delay:.2s}
+body.rise #app>*:nth-child(4){animation-delay:.3s}
+body.rise #app>*:nth-child(5){animation-delay:.4s}
+body.rise #app>*:nth-child(6){animation-delay:.5s}
+@media(prefers-reduced-motion:reduce){body.rise #app>*{animation:none}}
 </style>
 </head>
 <script>
@@ -397,5 +404,8 @@ document.addEventListener("submit",function(e){
 })();
 </script>
   <!-- update 2 -->
+<script>
+window.addEventListener('load',function(){setTimeout(function(){document.body.classList.add('rise')},650)});
+</script>
 </body>
 </html>
