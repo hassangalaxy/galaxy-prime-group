@@ -251,7 +251,7 @@ bid:{n:"Galaxy Bid Sourcing",headline:"Never Miss a Bid Again.",t:"We scan bid p
 va:{n:"Galaxy VA Team",headline:"Whatever You Need, We're One Call Away.",t:"From daily admin to one-off tasks — our team is here to support your business however you need it. No job too big, no request too small.",o:["General business support — tell us the task, we'll handle it","Day-to-day admin, coordination and follow-ups","Flexible help, whenever you need an extra hand"],w:"Hours spent on admin work are hours away from bidding and site work. Our team handles the routine, and anything else you need, so you can run the business."},
 
 
-marketing:{n:"Galaxy Marketing",headline:"Marketing Built for Contractors, Scaled to Your Budget.",t:"We run marketing for construction contractors around your goals and your budget. Our main focus is email marketing campaigns that bring leads to your business, with local search and ads support alongside.",o:["Email marketing campaigns run in your company's name, aimed at bringing you leads every day","From the contact data to the emails sent, everything follows your instructions: what you want to sell, buy or get done","You stay in the owner's seat: the leads belong to you and we hand them over to you","Local SEO and Google Business Profile setup, plus Google and Facebook Ads","Plans for every budget: if your budget is small, we build a lower-cost plan around your needs","A dedicated team in our office assigned to your marketing tasks"],w:"Every contractor's budget and goals are different, so we do not push one fixed package. Tell us what you need, whether that is selling a service, finding buyers or reaching new contacts, and what you can spend. We shape the campaign around it and our team handles the work."}
+marketing:{n:"Galaxy Marketing",headline:"Marketing That Brings You Real Projects \u2014 Not Just Likes.",d:"We find people who need your work and bring them to you as leads \u2014 email campaigns, follow-ups and social media, handled by our own team working as your backend office.",t:"Galaxy Marketing is the marketing team of Galaxy Prime Group, made only for contractors. In simple words: we find people who need your work, bring them to you as leads, and keep following up with them until they are ready to hire you. You focus on your projects \u2014 we handle everything behind the scenes.",o:["Lead generation \u2014 we find homeowners, builders and companies who are looking for a contractor like you","Email marketing \u2014 we write and send campaigns in your company name, exactly the way you instruct","Follow-ups \u2014 we keep following up with every lead, so no customer slips away","Social media posts \u2014 your work shown regularly, so people in your area start trusting your name","Google and local search \u2014 when someone nearby searches for your service, they find you first","Simple monthly report \u2014 how many leads came in, what we did, and what we will do next"],w:"Trust matters, so here is exactly how we work. We are not one freelancer working alone \u2014 Galaxy Prime Group has a big in-house team. We connect our own people to your business as your backend office team: they look after your marketing every day, follow your instructions on everything, and keep you updated. You do not hire anyone, train anyone or buy any tools. You simply tell us what you want \u2014 our team does the work, and every lead belongs to you."}
 };
 const U={estimating:"/galaxy-estimating/",marketing:"/galaxy-marketing/",bid:"/galaxy-bid-sourcing/",va:"/galaxy-va-team/"};
 const others=["marketing","bid","va"];
@@ -750,5 +750,15 @@ document.addEventListener("change", function(e){
   }
 });
 </script>
+<style id="gpgx4-hero-css">
+/* ===== GPG hero balance fix: text left, video right (added 2026-11-26) ===== */
+.hero .wrap{text-align:left;max-width:1240px}
+.hero h1{max-width:730px}
+.hero p{max-width:620px}
+.hero .lead{margin-left:0;margin-right:0}
+.hero video{width:112%;left:5%;object-position:72% 50%}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(5,12,30,.80) 0%,rgba(5,12,30,.48) 46%,rgba(5,12,30,.10) 78%);z-index:1;pointer-events:none}
+@media(max-width:700px){.hero video{width:106%;left:2%}}
+</style>
 </body>
 </html>
