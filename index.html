@@ -678,5 +678,55 @@ new MutationObserver(function(){ enhance(document.getElementById("app") || docum
   .observe(document.getElementById("app") || document.body, {childList:true, subtree:true});
 })();
 </script>
+<style id="gpgx3-design-css">
+/* ===== GPG design v4: same navy/gold, bold new layout feel (added 2026-11-26) ===== */
+body{font-size:17.5px}
+.wrap{max-width:1240px}
+section{padding:112px 0}
+.hero{padding:150px 0 130px}
+h1{font-size:clamp(3.1rem,7.2vw,5.9rem);line-height:1.03;letter-spacing:-.015em}
+h2{font-size:clamp(2.3rem,4.6vw,3.5rem);line-height:1.12;letter-spacing:-.01em}
+h3{font-size:1.65rem}
+.lead{font-size:1.22rem;line-height:1.75}
+section h2::after{content:"";display:block;width:76px;height:5px;border-radius:3px;background:linear-gradient(90deg,var(--gold),#ffe9a3);margin-top:18px}
+.cta h2::after{margin-left:auto;margin-right:auto;background:var(--navy)}
+.hero .wrap{text-align:center;max-width:920px}
+.hero .lead{margin-left:auto;margin-right:auto}
+.hero .btn{margin:6px}
+.hello{display:inline-block;border:1.5px solid var(--gold);border-radius:999px;padding:9px 22px;background:rgba(201,162,39,.13);font-size:1.02rem;letter-spacing:.16em;text-transform:uppercase;margin-bottom:22px}
+.btn{border-radius:999px;padding:16px 36px;font-size:1.06rem;letter-spacing:.02em}
+header .wrap{padding-top:18px;padding-bottom:18px}
+header .logo img,header a img{height:56px!important;width:auto!important}
+.card{border-radius:20px;border-top:1px solid var(--line);padding:38px 32px;box-shadow:0 12px 32px rgba(11,27,58,.09);overflow:hidden}
+.card::before{content:"";position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(90deg,var(--navy),var(--gold),#ffe9a3)}
+.grid{gap:64px}
+.two{gap:64px}
+@media(min-width:900px){.two>div:first-child{position:sticky;top:118px;align-self:start}}
+.stat{border-left:6px solid var(--gold);padding-left:24px}
+.stat b{font-size:4.1rem}
+.spot{padding:130px 0;background-image:radial-gradient(640px 320px at 85% 8%,rgba(201,162,39,.20),transparent 60%)}
+.cta{padding:104px 0;background-image:radial-gradient(560px 240px at 50% 0%,rgba(255,255,255,.28),transparent 65%)}
+main section:not(.dark):not(.spot):not(.cta){background-image:linear-gradient(180deg,rgba(11,27,58,.028),transparent 42%)}
+form{background:#fff;border:1px solid var(--line);border-radius:22px;box-shadow:0 18px 44px rgba(11,27,58,.12);padding:36px}
+input,select,textarea{border-radius:12px;padding:14px 16px}
+input:focus,select:focus,textarea:focus{border-color:var(--gold);box-shadow:0 0 0 4px rgba(201,162,39,.22);outline:none}
+footer{padding:84px 0 34px;border-top:5px solid var(--gold)}
+footer h3{font-size:1.28rem;letter-spacing:.02em}
+.gpgx-marquee-track{font-size:1.28rem}
+#gpgx3-top{position:fixed;right:22px;bottom:96px;width:52px;height:52px;border-radius:50%;border:2px solid #ffe9a3;background:linear-gradient(145deg,#C9A227,#8a6d1c);color:#0B1B3A;font-size:1.35rem;font-weight:700;cursor:pointer;z-index:9998;box-shadow:0 12px 28px rgba(3,10,28,.4);opacity:0;pointer-events:none;transform:translateY(14px);transition:opacity .4s,transform .4s}
+#gpgx3-top.show{opacity:1;pointer-events:auto;transform:none}
+@media(max-width:700px){section{padding:76px 0}.hero{padding:104px 0 88px}.stat b{font-size:3.2rem}form{padding:26px 20px}}
+</style>
+<script id="gpgx3-design-js">
+/* ===== GPG design v4 JS: back-to-top ===== */
+(function(){
+"use strict";
+var b = document.createElement("button");
+b.id = "gpgx3-top"; b.type = "button"; b.setAttribute("aria-label","Back to top"); b.textContent = "\u2191";
+document.body.appendChild(b);
+b.addEventListener("click", function(){ window.scrollTo({top:0, behavior:"smooth"}); });
+window.addEventListener("scroll", function(){ b.classList.toggle("show", (window.scrollY || 0) > 600); }, {passive:true});
+})();
+</script>
 </body>
 </html>
