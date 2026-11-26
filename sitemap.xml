@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
-  <url>
-    <loc>https://galaxyprimegroup.com/</loc>
-    <image:image>
-      <image:loc>https://galaxyprimegroup.com/logo.jpeg</image:loc>
-    </image:image>
-    <image:image>
-      <image:loc>https://galaxyprimegroup.com/gpg-badge.png</image:loc>
-    </image:image>
-  </url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://galaxyprimegroup.com/</loc><priority>1.0</priority></url>
+  <url><loc>https://galaxyprimegroup.com/galaxy-estimating/</loc><priority>0.9</priority></url>
+  <url><loc>https://galaxyprimegroup.com/galaxy-marketing/</loc><priority>0.9</priority></url>
+  <url><loc>https://galaxyprimegroup.com/services/</loc><priority>0.8</priority></url>
+  <url><loc>https://galaxyprimegroup.com/contact/</loc><priority>0.8</priority></url>
+  <url><loc>https://galaxyprimegroup.com/about/</loc><priority>0.7</priority></url>
+  <url><loc>https://galaxyprimegroup.com/galaxy-bid-sourcing/</loc><priority>0.6</priority></url>
+  <url><loc>https://galaxyprimegroup.com/galaxy-va-team/</loc><priority>0.6</priority></url>
+  <url><loc>https://galaxyprimegroup.com/privacy/</loc><priority>0.3</priority></url>
+  <url><loc>https://galaxyprimegroup.com/terms/</loc><priority>0.3</priority></url>
+  <url><loc>https://galaxyprimegroup.com/refund-policy/</loc><priority>0.3</priority></url>
+  <url><loc>https://galaxyprimegroup.com/cookie-policy/</loc><priority>0.3</priority></url>
 </urlset>
