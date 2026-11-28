@@ -201,7 +201,7 @@ window.addEventListener('load',function(){
   setTimeout(function(){
     var i=document.getElementById('intro');
     if(i){i.classList.add('hide'); setTimeout(function(){i.remove()},420);}
-  }, gpgSeen?80:320);
+  }, 320);
 });
 </script>
 <body>
@@ -936,5 +936,6 @@ new MutationObserver(function(){ init(document); }).observe(document.getElementB
 .mark-gpg{background-image:url(/logo.jpeg);background-size:163% auto;background-position:50% 34%;background-repeat:no-repeat;mix-blend-mode:multiply;aspect-ratio:1.4}
 .brand-logo .mark-gpg{height:200px}
 </style>
+<style id="gpg-mark4-css">.mark-gpg{background-size:150% auto;background-position:50% 33%}</style>
 </body>
 </html>
