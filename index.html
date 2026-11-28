@@ -952,5 +952,13 @@ new MutationObserver(function(){ init(document); }).observe(document.getElementB
 .brand-logo img.mkt-logo-img{filter:none;max-height:200px}
 .ge-core img.mkt-logo-img.core{width:88%;height:88%;object-fit:contain}
 </style>
+<style id="gpg-mktbig-css">
+/* Marketing logo: a bit bigger */
+.brand-logo:has(img.mkt-logo-img){height:242px}
+.brand-logo img.mkt-logo-img{max-height:238px}
+.ge-core.mkt{width:288px;height:288px}
+.ge-core img.mkt-logo-img.core{width:93%;height:93%}
+@media(max-width:760px){.ge-core.mkt{width:185px;height:185px}}
+</style>
 </body>
 </html>
